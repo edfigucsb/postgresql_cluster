@@ -7,7 +7,7 @@ proxy_env: {}  # yamllint disable rule:braces
 # ---------------------------------------------------------------------
 
 # Cluster variables
-cluster_vip: ""  # IP address for client access to the databases in the cluster (optional).
+cluster_vip: "128.111.123.160"  # IP address for client access to the databases in the cluster (optional).
 vip_interface: "{{ ansible_default_ipv4.interface }}"  # interface name (e.g., "ens32").
 # Note: VIP-based solutions such as keepalived or vip-manager may not function correctly in cloud environments.
 
@@ -23,7 +23,7 @@ synchronous_mode_strict: false  # if 'true' then block all client writes to the 
 synchronous_node_count: 1  # number of synchronous standby databases
 
 # Load Balancing
-with_haproxy_load_balancing: false  # or 'true' if you want to install and configure the load-balancing
+with_haproxy_load_balancing: true  # or 'true' if you want to install and configure the load-balancing
 haproxy_listen_port:
   master: 5000
   replicas: 5001
