@@ -11,20 +11,15 @@
 
 # if dcs_exists: false and dcs_type: "etcd"
 [etcd_cluster]  # recommendation: 3, or 5-7 nodes
+128.111.123.161
+128.111.123.162
 #10.128.64.140
 #10.128.64.142
 #10.128.64.143
 
-# if dcs_exists: false and dcs_type: "consul"
-[consul_instances]  # recommendation: 3 or 5-7 nodes
-#10.128.64.140 consul_node_role=server consul_bootstrap_expect=true consul_datacenter=dc1
-#10.128.64.142 consul_node_role=server consul_bootstrap_expect=true consul_datacenter=dc1
-#10.128.64.143 consul_node_role=server consul_bootstrap_expect=true consul_datacenter=dc1
-#10.128.64.144 consul_node_role=client consul_datacenter=dc2
-#10.128.64.145 consul_node_role=client consul_datacenter=dc2
-
 # if with_haproxy_load_balancing: true
 [balancers]
+128.111.123.160 balancer_tags="datacenter=dc1"
 #10.128.64.140 # balancer_tags="datacenter=dc1"
 #10.128.64.142 # balancer_tags="datacenter=dc1"
 #10.128.64.143 # balancer_tags="datacenter=dc1"
@@ -33,10 +28,10 @@
 
 # PostgreSQL nodes
 [master]
-#10.128.64.140 hostname=pgnode01 postgresql_exists=false # patroni_tags="datacenter=dc1"
+128.111.123.161 hostname=cpsql1 postgresql_exists=true patroni_tags="datacenter=dc1"
 
 [replica]
-#10.128.64.142 hostname=pgnode02 postgresql_exists=false # patroni_tags="datacenter=dc1"
+128.111.123.162 hostname=cpsql2 postgresql_exists=false spatroni_tags="datacenter=dc1"
 #10.128.64.143 hostname=pgnode03 postgresql_exists=false # patroni_tags="datacenter=dc1"
 #10.128.64.144 hostname=pgnode04 postgresql_exists=false patroni_tags="datacenter=dc2"
 #10.128.64.145 hostname=pgnode04 postgresql_exists=false patroni_tags="datacenter=dc2" new_node=true
@@ -57,7 +52,7 @@ replica
 [all:vars]
 ansible_connection='ssh'
 ansible_ssh_port='22'
-#ansible_user='root'
-#ansible_ssh_pass='secretpassword'  # "sshpass" package is required for use "ansible_ssh_pass"
-#ansible_ssh_private_key_file=
+ansible_user='eduardo_figueroa'
+ansible_ssh_pass=''  # "sshpass" package is required for use "ansible_ssh_pass"
+ansible_ssh_private_key_file=/var/home/eduardo_figueroa/.ssh/id_ed25519
 #ansible_python_interpreter='/usr/bin/python3'
