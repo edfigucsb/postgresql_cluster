@@ -3,7 +3,8 @@
 # Forked and used to deploy CPSQL, CPSQL1, and CPSQL2
 
 See original README.md in history. Project was renamed to Autobase shortly after our deployment.
-
+---
+[See wiki for deployment details](https://github.com/edfigucsb/postgresql_cluster/wiki)
 ---
 
 ### Production-ready PostgreSQL High-Availability Cluster (based on Patroni). Automating with Ansible.
